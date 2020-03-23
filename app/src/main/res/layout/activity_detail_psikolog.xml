@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailPsikolog"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/card_view_profile">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:padding="8dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Profile"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold" />
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/profile_psikolog"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="50dp"
+                    android:src="@mipmap/ic_launcher"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Profile Name"
+                    android:layout_below="@+id/profile_psikolog"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"
+                    android:id="@+id/nama_user"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="20dp"/>
+                <Button
+                    android:id="@+id/chat"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/nama_user"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="4dp"
+                    android:text="Chat" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/tv_jadwalharian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card_view_profile"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            android:layout_centerHorizontal="true"
+            android:text="Jadwal Harian"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/jadwal_harian"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_jadwalharian"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1">
+
+        </androidx.recyclerview.widget.RecyclerView>
+        <TextView
+            android:id="@+id/tv_paketkonseling"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/jadwal_harian"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            android:layout_centerHorizontal="true"
+            android:text="Paket Konseling"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rec_view_paket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_paketkonseling"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </RelativeLayout>
+</ScrollView>
