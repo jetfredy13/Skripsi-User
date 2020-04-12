@@ -33,6 +33,12 @@ public class UserHomeFragment extends Fragment {
     private List<Psikolog> list_psikolog;
     DatabaseReference ref;
     SharedPreferences sp;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -48,7 +54,6 @@ public class UserHomeFragment extends Fragment {
     private void loadArtikel()
     {
         list_artikel = new ArrayList<>();
-        list_psikolog = new ArrayList<>();
         ref = FirebaseDatabase.getInstance().getReference("Artikel");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -59,6 +64,9 @@ public class UserHomeFragment extends Fragment {
                     Artikel art = snap.getValue(Artikel.class);
                     art.setId(snap.getKey());
                     list_artikel.add(art);
+                    artikel_adapter = new ArtikelAdapter(getContext(),list_artikel);
+                    rec_view_artikel.setAdapter(artikel_adapter);
+                    artikel_adapter.notifyDataSetChanged();
                 }
             }
             @Override
@@ -66,30 +74,6 @@ public class UserHomeFragment extends Fragment {
 
             }
         });
-        ref = FirebaseDatabase.getInstance().getReference("Psikolog");
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                list_psikolog.clear();
-                for(int i =0; i<list_artikel.size() ; i++)
-                {
-                    for(DataSnapshot snap : dataSnapshot.getChildren())
-                    {
-                        if(snap.getKey().equals(list_artikel.get(i).getPenulis()))
-                        {
-                            Psikolog psikolog = snap.getValue(Psikolog.class);
-                            list_psikolog.add(psikolog);
-                        }
-                    }
-                }
-                artikel_adapter = new ArtikelAdapter(getContext(),list_artikel,list_psikolog);
-                rec_view_artikel.setAdapter(artikel_adapter);
-                artikel_adapter.notifyDataSetChanged();
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
     }
 }

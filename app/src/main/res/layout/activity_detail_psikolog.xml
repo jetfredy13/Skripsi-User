@@ -2,6 +2,7 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DetailPsikolog"
@@ -54,49 +55,24 @@
                     android:text="Chat" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
-        <TextView
-            android:id="@+id/tv_jadwalharian"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/card_view_profile"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="10dp"
-            android:layout_centerHorizontal="true"
-            android:text="Jadwal Harian"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/jadwal_harian"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_jadwalharian"
-            android:layout_marginTop="15dp"
-            android:layout_weight="1">
-
-        </androidx.recyclerview.widget.RecyclerView>
-        <TextView
-            android:id="@+id/tv_paketkonseling"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/jadwal_harian"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="10dp"
-            android:layout_centerHorizontal="true"
-            android:text="Paket Konseling"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rec_view_paket"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_paketkonseling"
-            android:layout_marginTop="15dp"
-            android:layout_weight="1">
-
-        </androidx.recyclerview.widget.RecyclerView>
+            android:layout_below="@id/card_view_profile">
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottom_nav_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:menu="@menu/detail_psikolog_menu"
+                android:background="?android:attr/windowBackground"
+                android:layout_gravity="center">
+            </com.google.android.material.bottomnavigation.BottomNavigationView>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fragment_container_detail"
+                android:layout_below="@id/bottom_nav_detail">
+            </FrameLayout>
+        </RelativeLayout>
     </RelativeLayout>
 </ScrollView>

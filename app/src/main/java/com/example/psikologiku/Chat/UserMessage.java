@@ -5,15 +5,26 @@ public class UserMessage {
     private String curentUser;
     private String message;
     private String sended;
+    private String message_type;
     private long createdAt;
+
+    public String getMessage_type() {
+        return message_type;
+    }
+
+    public void setMessage_type(String message_type) {
+        this.message_type = message_type;
+    }
+
     public UserMessage(){
 
     }
-    public UserMessage(String curentUser,String message, String sender, long createdAt) {
+    public UserMessage(String curentUser,String message, String sender, long createdAt, String type) {
         this.message = message;
         this.sended = sender;
         this.createdAt = createdAt;
         this.curentUser = curentUser;
+        this.message_type = type;
     }
 
     public String getCurentUser() {

@@ -49,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
                     usr.setEmail(etEmail.getText().toString());
                     usr.setPassword(etPassword.getText().toString());
                     usr.setNIK(etNik.getText().toString());
-                    //usr.setId(ref.getKey());
+                    usr.setSaldo(0);
                     usr.setTipeUser(0);
                     ref.push().setValue(usr);
                     pesan="Berhasil Register";

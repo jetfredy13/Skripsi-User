@@ -45,7 +45,6 @@ public class UserListKonselingFragment extends Fragment {
         uList = new ArrayList<>();
         sp = getContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         currUser = sp.getString("username","");
-
         reference = FirebaseDatabase.getInstance().getReference("Konseling");
         reference.addValueEventListener(new ValueEventListener() {
             @Override

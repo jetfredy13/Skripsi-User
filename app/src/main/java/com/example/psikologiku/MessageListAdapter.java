@@ -2,6 +2,8 @@ package com.example.psikologiku;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +15,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.psikologiku.Chat.UserMessage;
 
+import java.io.IOException;
 import java.util.List;
 
 public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.MessageListViewHolder> {
     private Context mContext;
     private List<UserMessage>  mList;
     private String imageUrl;
+    private MediaPlayer mediaPlayer;
     public static final int MSG_TYPE_LEFT = 0;
     public static final int MSG_TYPE_RIGHT = 1;
     private SharedPreferences sp;
@@ -32,8 +36,8 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
     @Override
     public int getItemViewType(int position) {
         sp = mContext.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-        String kata = sp.getString("username","");
-        if(mList.get(position).getSended().equals(kata)){
+        String id = sp.getString("id","");
+        if(mList.get(position).getSended().equals(id)){
             return MSG_TYPE_RIGHT;
         }
         else{
@@ -70,11 +74,41 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
         UserMessage message = mList.get(position);
         holder.message.setText(message.getMessage());
         holder.profile_image.setImageResource(R.mipmap.ic_launcher);
-        /*if(imageUrl.equals("default")){
+        if(message.getMessage_type().equals("audio"))
+        {
 
-        }*/
+            try{
+                mediaPlayer = new MediaPlayer();
+                mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                mediaPlayer.setDataSource(message.getMessage());
+                mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mediaPlayer) {
+                        mediaPlayer.start();
+                    }
+                });
+
+                mediaPlayer.prepareAsync();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                stopMediaPlayer();
+            }
+        });
     }
-
+    private void stopMediaPlayer()
+    {
+        if(mediaPlayer!=null)
+        {
+            mediaPlayer.reset();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+    }
     @Override
     public int getItemCount() {
         return mList.size();

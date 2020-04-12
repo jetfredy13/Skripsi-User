@@ -10,8 +10,16 @@ public class User {
         this.id = id;
     }
 
-    private  int tipeUser;
+    private  int tipeUser,saldo;
     private  String ImageUrl;
+
+    public int getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(int saldo) {
+        this.saldo = saldo;
+    }
 
     public String getImageUrl() {
         return ImageUrl;

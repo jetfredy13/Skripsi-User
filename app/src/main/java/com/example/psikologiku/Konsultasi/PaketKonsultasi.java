@@ -1,6 +1,8 @@
 package com.example.psikologiku.Konsultasi;
 
-public class PaketKonsultasi {
+import java.io.Serializable;
+
+public class PaketKonsultasi implements Serializable {
     String harga,nama_paket,jumlah_sesi,psikolog_id;
     public String getPsikolog_id() {
         return psikolog_id;

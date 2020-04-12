@@ -1,7 +1,15 @@
 package com.example.psikologiku;
 
 public class JadwalKonseling {
-    String hari,jam,tanggal;
+    String hari,jam,tanggal,status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getHari() {
         return hari;

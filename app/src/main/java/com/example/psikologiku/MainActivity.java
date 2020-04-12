@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
                                 SharedPreferences sp = getSharedPreferences("userInfo",MODE_PRIVATE);
                                 SharedPreferences.Editor edit = sp.edit();
                                 edit.putString("username",nm);
+                                edit.putString("email",em);
                                 edit.putString("id",id);
                                 Log.d("username",nm);
                                 edit.commit();

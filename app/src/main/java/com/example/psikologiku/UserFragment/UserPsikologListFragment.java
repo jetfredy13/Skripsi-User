@@ -47,7 +47,6 @@ public class UserPsikologListFragment extends Fragment {
         recView.setLayoutManager(new LinearLayoutManager(getContext()));
         getData();
         return v;
-
     }
 
     private void getData()
